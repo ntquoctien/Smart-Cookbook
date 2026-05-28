@@ -1,20 +1,44 @@
+import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import type { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 
 import type { MainTabParamList } from '../../types';
+import { PreferenceChip } from '../../components/recipe/PreferenceChip';
 import { AppButton } from '../../components/ui/AppButton';
 import { AppCard } from '../../components/ui/AppCard';
+import { AppInput } from '../../components/ui/AppInput';
 import { ScreenContainer } from '../../components/ui/ScreenContainer';
 import { SectionHeader } from '../../components/ui/SectionHeader';
+import { useAppStore } from '../../store/useAppStore';
 import { colors } from '../../styles/colors';
 import { spacing } from '../../styles/spacing';
 import { fontFamilies, fontSizes } from '../../styles/typography';
 
 type Props = BottomTabScreenProps<MainTabParamList, 'Profile'>;
 
-const settings = ['Diet preferences', 'Cooking level', 'Notifications', 'Saved ingredients'];
+const preferenceOptions = ['Healthy focus', 'Budget cooking', 'Quick meals', 'High protein'];
 
 export function ProfileScreen({ navigation }: Props) {
+  const userProfile = useAppStore((state) => state.userProfile);
+  const updateUserProfile = useAppStore((state) => state.updateUserProfile);
+  const [name, setName] = useState(userProfile.name);
+  const [cookingLevel, setCookingLevel] = useState(userProfile.cookingLevel);
+  const [dietPreferences, setDietPreferences] = useState(userProfile.dietPreferences);
+
+  useEffect(() => {
+    setName(userProfile.name);
+    setCookingLevel(userProfile.cookingLevel);
+    setDietPreferences(userProfile.dietPreferences);
+  }, [userProfile]);
+
+  const togglePreference = (preference: string) => {
+    setDietPreferences((current) =>
+      current.includes(preference)
+        ? current.filter((item) => item !== preference)
+        : [...current, preference]
+    );
+  };
+
   const handleLogout = () => {
     navigation.getParent()?.reset({
       index: 0,
@@ -24,28 +48,48 @@ export function ProfileScreen({ navigation }: Props) {
 
   return (
     <ScreenContainer>
-      <SectionHeader title="Profile" subtitle="Your mock cooking identity for Phase 1." />
+      <SectionHeader title="Profile" subtitle="Your local cooking preferences and saved identity." />
 
       <AppCard style={styles.profileCard}>
         <View style={styles.avatar}>
-          <Text style={styles.avatarText}>KE</Text>
+          <Text style={styles.avatarText}>{name.slice(0, 2).toUpperCase()}</Text>
         </View>
-        <Text style={styles.name}>Kitchen Explorer</Text>
-        <Text style={styles.email}>chef@smartcookbook.ai</Text>
+        <Text style={styles.name}>{name}</Text>
+        <Text style={styles.email}>{userProfile.email}</Text>
         <View style={styles.badges}>
-          <Text style={styles.badge}>Healthy focus</Text>
-          <Text style={styles.badge}>Beginner-friendly</Text>
+          {dietPreferences.map((preference) => (
+            <Text key={preference} style={styles.badge}>
+              {preference}
+            </Text>
+          ))}
         </View>
       </AppCard>
 
-      <View style={styles.section}>
-        {settings.map((item) => (
-          <AppCard key={item} style={styles.settingRow}>
-            <Text style={styles.settingText}>{item}</Text>
-            <Text style={styles.settingArrow}>›</Text>
-          </AppCard>
-        ))}
-      </View>
+      <AppCard style={styles.section}>
+        <AppInput label="Display name" placeholder="Your name" value={name} onChangeText={setName} />
+        <AppInput label="Cooking level" placeholder="Beginner-friendly" value={cookingLevel} onChangeText={setCookingLevel} />
+        <Text style={styles.preferenceLabel}>Diet preferences</Text>
+        <View style={styles.preferenceWrap}>
+          {preferenceOptions.map((preference) => (
+            <PreferenceChip
+              key={preference}
+              label={preference}
+              selected={dietPreferences.includes(preference)}
+              onPress={() => togglePreference(preference)}
+            />
+          ))}
+        </View>
+        <AppButton
+          label="Save profile changes"
+          onPress={() =>
+            void updateUserProfile({
+              name,
+              cookingLevel,
+              dietPreferences,
+            })
+          }
+        />
+      </AppCard>
 
       <AppButton label="Log out" variant="secondary" onPress={handleLogout} />
     </ScreenContainer>
@@ -101,19 +145,14 @@ const styles = StyleSheet.create({
     marginVertical: spacing.xl,
     gap: spacing.md,
   },
-  settingRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  settingText: {
+  preferenceLabel: {
     fontFamily: fontFamilies.bold,
-    fontSize: fontSizes.md,
+    fontSize: fontSizes.sm,
     color: colors.textPrimary,
   },
-  settingArrow: {
-    fontFamily: fontFamilies.black,
-    fontSize: fontSizes.xl,
-    color: colors.primary,
+  preferenceWrap: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: spacing.sm,
   },
 });

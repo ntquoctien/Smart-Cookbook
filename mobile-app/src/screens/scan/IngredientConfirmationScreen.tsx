@@ -1,46 +1,73 @@
-import { useState } from 'react';
 import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import type { RootStackParamList } from '../../types';
 import { AppButton } from '../../components/ui/AppButton';
 import { AppCard } from '../../components/ui/AppCard';
+import { EmptyState } from '../../components/ui/EmptyState';
 import { ScreenContainer } from '../../components/ui/ScreenContainer';
-import { detectedIngredients } from '../../data/mockIngredients';
+import { useAppStore } from '../../store/useAppStore';
 import { colors } from '../../styles/colors';
 import { spacing } from '../../styles/spacing';
 import { fontFamilies, fontSizes } from '../../styles/typography';
-import { formatConfidence } from '../../utils/formatters';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'IngredientConfirmation'>;
 
 export function IngredientConfirmationScreen({ navigation }: Props) {
-  const [items, setItems] = useState(detectedIngredients);
+  const items = useAppStore((state) => state.confirmedIngredients);
+  const updateConfirmedIngredient = useAppStore((state) => state.updateConfirmedIngredient);
+  const removeConfirmedIngredient = useAppStore((state) => state.removeConfirmedIngredient);
+  const addConfirmedIngredient = useAppStore((state) => state.addConfirmedIngredient);
+  const setConfirmedIngredients = useAppStore((state) => state.setConfirmedIngredients);
+
+  if (!items.length) {
+    return (
+      <ScreenContainer>
+        <EmptyState
+          icon="🥕"
+          title="No detected ingredients"
+          message="Run the AI scanning step first, or add ingredients manually to continue."
+        />
+        <AppButton
+          label="Add first ingredient"
+          onPress={() =>
+            addConfirmedIngredient({
+              id: `${Date.now()}`,
+              name: 'trung ga',
+              quantity: '2 qua',
+              count: 2,
+              unit: 'qua',
+            })
+          }
+        />
+      </ScreenContainer>
+    );
+  }
 
   return (
     <ScreenContainer>
       <Text style={styles.title}>Confirm detected ingredients</Text>
-      <Text style={styles.subtitle}>Edit quantities or remove any ingredient before recipe matching.</Text>
+      <Text style={styles.subtitle}>Edit names, quantities, or remove ingredients before recipe matching.</Text>
 
       <View style={styles.list}>
         {items.map((item) => (
           <AppCard key={item.id} style={styles.card}>
             <View style={styles.row}>
               <View style={styles.nameGroup}>
-                <Text style={styles.name}>{item.name}</Text>
-                <Text style={styles.confidence}>Confidence: {formatConfidence(item.confidence)}</Text>
+                <TextInput
+                  value={item.name}
+                  onChangeText={(value) => updateConfirmedIngredient(item.id, { name: value })}
+                  style={styles.nameInput}
+                />
+                <Text style={styles.quantityPreview}>{item.quantity}</Text>
               </View>
-              <Pressable onPress={() => setItems((current) => current.filter((entry) => entry.id !== item.id))}>
+              <Pressable onPress={() => removeConfirmedIngredient(item.id)}>
                 <Text style={styles.delete}>Delete</Text>
               </Pressable>
             </View>
             <TextInput
               value={item.quantity}
-              onChangeText={(value) =>
-                setItems((current) =>
-                  current.map((entry) => (entry.id === item.id ? { ...entry, quantity: value } : entry))
-                )
-              }
+              onChangeText={(value) => updateConfirmedIngredient(item.id, { quantity: value })}
               style={styles.input}
             />
           </AppCard>
@@ -51,14 +78,23 @@ export function IngredientConfirmationScreen({ navigation }: Props) {
         label="Add ingredient"
         variant="secondary"
         onPress={() =>
-          setItems((current) => [
-            ...current,
-            { id: `${current.length + 1}`, name: 'rau cải', quantity: '1 bó', confidence: 0.8 },
-          ])
+          addConfirmedIngredient({
+            id: `${Date.now()}`,
+            name: 'rau cai',
+            quantity: '1 bo',
+            count: 1,
+            unit: 'bo',
+          })
         }
       />
       <View style={styles.bottom}>
-        <AppButton label="Confirm ingredients" onPress={() => navigation.navigate('PreferenceSelection')} />
+        <AppButton
+          label="Confirm ingredients"
+          onPress={() => {
+            setConfirmedIngredients(items);
+            navigation.navigate('PreferenceSelection');
+          }}
+        />
       </View>
     </ScreenContainer>
   );
@@ -93,12 +129,13 @@ const styles = StyleSheet.create({
   nameGroup: {
     flex: 1,
   },
-  name: {
+  nameInput: {
     fontFamily: fontFamilies.extraBold,
     fontSize: fontSizes.md,
     color: colors.textPrimary,
+    paddingVertical: 0,
   },
-  confidence: {
+  quantityPreview: {
     marginTop: 4,
     fontFamily: fontFamilies.regular,
     fontSize: fontSizes.sm,

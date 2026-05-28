@@ -10,4 +10,5 @@ export interface CookingSession {
   currentStep: number;
   totalSteps: number;
   timerMinutes: number;
+  chatMessages: ChatMessage[];
 }

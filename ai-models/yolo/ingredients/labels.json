@@ -1,0 +1,322 @@
+{
+  "person": {
+    "name_vi": "person",
+    "unit": "cái"
+  },
+  "bicycle": {
+    "name_vi": "bicycle",
+    "unit": "cái"
+  },
+  "car": {
+    "name_vi": "car",
+    "unit": "cái"
+  },
+  "motorcycle": {
+    "name_vi": "motorcycle",
+    "unit": "cái"
+  },
+  "airplane": {
+    "name_vi": "airplane",
+    "unit": "cái"
+  },
+  "bus": {
+    "name_vi": "bus",
+    "unit": "cái"
+  },
+  "train": {
+    "name_vi": "train",
+    "unit": "cái"
+  },
+  "truck": {
+    "name_vi": "truck",
+    "unit": "cái"
+  },
+  "boat": {
+    "name_vi": "boat",
+    "unit": "cái"
+  },
+  "traffic light": {
+    "name_vi": "traffic light",
+    "unit": "cái"
+  },
+  "fire hydrant": {
+    "name_vi": "fire hydrant",
+    "unit": "cái"
+  },
+  "stop sign": {
+    "name_vi": "stop sign",
+    "unit": "cái"
+  },
+  "parking meter": {
+    "name_vi": "parking meter",
+    "unit": "cái"
+  },
+  "bench": {
+    "name_vi": "bench",
+    "unit": "cái"
+  },
+  "bird": {
+    "name_vi": "bird",
+    "unit": "cái"
+  },
+  "cat": {
+    "name_vi": "cat",
+    "unit": "cái"
+  },
+  "dog": {
+    "name_vi": "dog",
+    "unit": "cái"
+  },
+  "horse": {
+    "name_vi": "horse",
+    "unit": "cái"
+  },
+  "sheep": {
+    "name_vi": "sheep",
+    "unit": "cái"
+  },
+  "cow": {
+    "name_vi": "cow",
+    "unit": "cái"
+  },
+  "elephant": {
+    "name_vi": "elephant",
+    "unit": "cái"
+  },
+  "bear": {
+    "name_vi": "bear",
+    "unit": "cái"
+  },
+  "zebra": {
+    "name_vi": "zebra",
+    "unit": "cái"
+  },
+  "giraffe": {
+    "name_vi": "giraffe",
+    "unit": "cái"
+  },
+  "backpack": {
+    "name_vi": "backpack",
+    "unit": "cái"
+  },
+  "umbrella": {
+    "name_vi": "umbrella",
+    "unit": "cái"
+  },
+  "handbag": {
+    "name_vi": "handbag",
+    "unit": "cái"
+  },
+  "tie": {
+    "name_vi": "tie",
+    "unit": "cái"
+  },
+  "suitcase": {
+    "name_vi": "suitcase",
+    "unit": "cái"
+  },
+  "frisbee": {
+    "name_vi": "frisbee",
+    "unit": "cái"
+  },
+  "skis": {
+    "name_vi": "skis",
+    "unit": "cái"
+  },
+  "snowboard": {
+    "name_vi": "snowboard",
+    "unit": "cái"
+  },
+  "sports ball": {
+    "name_vi": "sports ball",
+    "unit": "cái"
+  },
+  "kite": {
+    "name_vi": "kite",
+    "unit": "cái"
+  },
+  "baseball bat": {
+    "name_vi": "baseball bat",
+    "unit": "cái"
+  },
+  "baseball glove": {
+    "name_vi": "baseball glove",
+    "unit": "cái"
+  },
+  "skateboard": {
+    "name_vi": "skateboard",
+    "unit": "cái"
+  },
+  "surfboard": {
+    "name_vi": "surfboard",
+    "unit": "cái"
+  },
+  "tennis racket": {
+    "name_vi": "tennis racket",
+    "unit": "cái"
+  },
+  "bottle": {
+    "name_vi": "chai",
+    "unit": "chai"
+  },
+  "wine glass": {
+    "name_vi": "ly rượu",
+    "unit": "ly"
+  },
+  "cup": {
+    "name_vi": "cốc",
+    "unit": "cốc"
+  },
+  "fork": {
+    "name_vi": "nĩa",
+    "unit": "cái"
+  },
+  "knife": {
+    "name_vi": "dao",
+    "unit": "cái"
+  },
+  "spoon": {
+    "name_vi": "muỗng",
+    "unit": "cái"
+  },
+  "bowl": {
+    "name_vi": "bát",
+    "unit": "bát"
+  },
+  "banana": {
+    "name_vi": "chuối",
+    "unit": "quả"
+  },
+  "apple": {
+    "name_vi": "táo",
+    "unit": "quả"
+  },
+  "sandwich": {
+    "name_vi": "bánh mì kẹp",
+    "unit": "cái"
+  },
+  "orange": {
+    "name_vi": "cam",
+    "unit": "quả"
+  },
+  "broccoli": {
+    "name_vi": "bông cải xanh",
+    "unit": "cái"
+  },
+  "carrot": {
+    "name_vi": "cà rốt",
+    "unit": "củ"
+  },
+  "hot dog": {
+    "name_vi": "hot dog",
+    "unit": "cái"
+  },
+  "pizza": {
+    "name_vi": "pizza",
+    "unit": "cái"
+  },
+  "donut": {
+    "name_vi": "bánh donut",
+    "unit": "cái"
+  },
+  "cake": {
+    "name_vi": "bánh ngọt",
+    "unit": "cái"
+  },
+  "chair": {
+    "name_vi": "chair",
+    "unit": "cái"
+  },
+  "couch": {
+    "name_vi": "couch",
+    "unit": "cái"
+  },
+  "potted plant": {
+    "name_vi": "potted plant",
+    "unit": "cái"
+  },
+  "bed": {
+    "name_vi": "bed",
+    "unit": "cái"
+  },
+  "dining table": {
+    "name_vi": "dining table",
+    "unit": "cái"
+  },
+  "toilet": {
+    "name_vi": "toilet",
+    "unit": "cái"
+  },
+  "tv": {
+    "name_vi": "tv",
+    "unit": "cái"
+  },
+  "laptop": {
+    "name_vi": "laptop",
+    "unit": "cái"
+  },
+  "mouse": {
+    "name_vi": "mouse",
+    "unit": "cái"
+  },
+  "remote": {
+    "name_vi": "remote",
+    "unit": "cái"
+  },
+  "keyboard": {
+    "name_vi": "keyboard",
+    "unit": "cái"
+  },
+  "cell phone": {
+    "name_vi": "cell phone",
+    "unit": "cái"
+  },
+  "microwave": {
+    "name_vi": "lò vi sóng",
+    "unit": "cái"
+  },
+  "oven": {
+    "name_vi": "lò nướng",
+    "unit": "cái"
+  },
+  "toaster": {
+    "name_vi": "máy nướng bánh mì",
+    "unit": "cái"
+  },
+  "sink": {
+    "name_vi": "sink",
+    "unit": "cái"
+  },
+  "refrigerator": {
+    "name_vi": "tủ lạnh",
+    "unit": "cái"
+  },
+  "book": {
+    "name_vi": "book",
+    "unit": "cái"
+  },
+  "clock": {
+    "name_vi": "clock",
+    "unit": "cái"
+  },
+  "vase": {
+    "name_vi": "vase",
+    "unit": "cái"
+  },
+  "scissors": {
+    "name_vi": "scissors",
+    "unit": "cái"
+  },
+  "teddy bear": {
+    "name_vi": "teddy bear",
+    "unit": "cái"
+  },
+  "hair drier": {
+    "name_vi": "hair drier",
+    "unit": "cái"
+  },
+  "toothbrush": {
+    "name_vi": "toothbrush",
+    "unit": "cái"
+  }
+}

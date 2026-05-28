@@ -4,9 +4,14 @@ import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { LinearGradient } from 'expo-linear-gradient';
 
 import type { RootStackParamList } from '../../types';
+import type { Ingredient } from '../../types/ingredient';
 import { AppButton } from '../../components/ui/AppButton';
+import { EmptyState } from '../../components/ui/EmptyState';
 import { LoadingState } from '../../components/ui/LoadingState';
 import { ScreenContainer } from '../../components/ui/ScreenContainer';
+import { visionApiService } from '../../services/visionApiService';
+import { visionMockService } from '../../services/visionMockService';
+import { useAppStore } from '../../store/useAppStore';
 import { colors } from '../../styles/colors';
 import { radius } from '../../styles/radius';
 import { spacing } from '../../styles/spacing';
@@ -18,15 +23,82 @@ const steps = ['Analyzing image', 'Detecting ingredients', 'Preparing recipe sug
 
 export function AIScanningScreen({ navigation }: Props) {
   const [activeStep, setActiveStep] = useState(0);
+  const selectedImages = useAppStore((state) => state.selectedImages);
+  const scanning = useAppStore((state) => state.scanning);
+  const scanError = useAppStore((state) => state.scanError);
+  const setScanning = useAppStore((state) => state.setScanning);
+  const setDetectedIngredients = useAppStore((state) => state.setDetectedIngredients);
+  const setScanError = useAppStore((state) => state.setScanError);
 
   useEffect(() => {
-    if (activeStep >= steps.length - 1) {
+    if (!scanning || activeStep >= steps.length - 1) {
       return;
     }
 
     const timer = setTimeout(() => setActiveStep((value) => value + 1), 900);
     return () => clearTimeout(timer);
-  }, [activeStep]);
+  }, [activeStep, scanning]);
+
+  useEffect(() => {
+    let active = true;
+
+    const runDetection = async () => {
+      if (!selectedImages.length) {
+        setScanError('No image selected.');
+        setScanning(false);
+        return;
+      }
+
+      setScanning(true);
+      setScanError(null);
+      setActiveStep(0);
+
+      let usedFallback = false;
+      let ingredients: Ingredient[] = [];
+      try {
+        ingredients = await visionApiService.detectIngredients(selectedImages);
+      } catch {
+        usedFallback = true;
+        ingredients = await visionMockService.detectIngredients(selectedImages);
+      }
+
+      if (!active) {
+        return;
+      }
+
+      if (!ingredients.length) {
+        setDetectedIngredients([]);
+        setScanError('No ingredients detected. Please try another photo or add ingredients manually.');
+      } else {
+        setDetectedIngredients(ingredients);
+        if (usedFallback) {
+          setScanError('Backend vision is unavailable, so mock detection was used. You can review or edit the ingredients.');
+        }
+      }
+
+      setScanning(false);
+      setActiveStep(steps.length - 1);
+    };
+
+    void runDetection();
+
+    return () => {
+      active = false;
+    };
+  }, [selectedImages, setDetectedIngredients, setScanError, setScanning]);
+
+  if (!selectedImages.length) {
+    return (
+      <ScreenContainer>
+        <EmptyState
+          icon="🖼️"
+          title="No images available"
+          message="Return to the camera screen and capture or select images before starting AI scanning."
+        />
+        <AppButton label="Back to scan" onPress={() => navigation.navigate('MainTabs', { screen: 'CameraScan' })} />
+      </ScreenContainer>
+    );
+  }
 
   return (
     <ScreenContainer>
@@ -34,7 +106,7 @@ export function AIScanningScreen({ navigation }: Props) {
         <Text style={styles.icon}>🧠</Text>
         <Text style={styles.title}>AI is reading your ingredients</Text>
         <Text style={styles.subtitle}>We are turning your photos into a cleaner ingredient list.</Text>
-        <LoadingState label={steps[activeStep]} />
+        <LoadingState label={scanError ?? steps[activeStep]} />
       </LinearGradient>
 
       <View style={styles.stepList}>
@@ -46,7 +118,12 @@ export function AIScanningScreen({ navigation }: Props) {
         ))}
       </View>
 
-      <AppButton label="Continue" onPress={() => navigation.navigate('IngredientConfirmation')} />
+      {scanning ? null : (
+        <AppButton
+          label={scanError ? 'Continue to ingredient review' : 'Continue'}
+          onPress={() => navigation.navigate('IngredientConfirmation')}
+        />
+      )}
     </ScreenContainer>
   );
 }

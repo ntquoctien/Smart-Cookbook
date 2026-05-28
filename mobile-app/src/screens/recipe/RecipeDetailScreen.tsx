@@ -3,8 +3,11 @@ import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import type { RootStackParamList } from '../../types';
 import { AppButton } from '../../components/ui/AppButton';
+import { EmptyState } from '../../components/ui/EmptyState';
 import { IngredientChip } from '../../components/recipe/IngredientChip';
 import { mockRecipes } from '../../data/mockRecipes';
+import { cookingMockService } from '../../services/cookingMockService';
+import { useAppStore } from '../../store/useAppStore';
 import { colors } from '../../styles/colors';
 import { radius } from '../../styles/radius';
 import { spacing } from '../../styles/spacing';
@@ -14,7 +17,27 @@ import { formatMinutes } from '../../utils/formatters';
 type Props = NativeStackScreenProps<RootStackParamList, 'RecipeDetail'>;
 
 export function RecipeDetailScreen({ navigation, route }: Props) {
-  const recipe = mockRecipes.find((item) => item.id === route.params?.recipeId) ?? mockRecipes[0];
+  const selectedRecipe = useAppStore((state) => state.selectedRecipe);
+  const recommendedRecipes = useAppStore((state) => state.recommendedRecipes);
+  const setSelectedRecipe = useAppStore((state) => state.setSelectedRecipe);
+  const setCurrentCookingSession = useAppStore((state) => state.setCurrentCookingSession);
+  const recipe =
+    selectedRecipe ??
+    recommendedRecipes.find((item) => item.id === route.params?.recipeId) ??
+    mockRecipes.find((item) => item.id === route.params?.recipeId) ??
+    null;
+
+  if (!recipe) {
+    return (
+      <ScrollView style={styles.container} contentContainerStyle={styles.content}>
+        <EmptyState
+          icon="🍽️"
+          title="Recipe not available"
+          message="Select a recommendation first so we can open the detail view."
+        />
+      </ScrollView>
+    );
+  }
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
@@ -69,7 +92,14 @@ export function RecipeDetailScreen({ navigation, route }: Props) {
           ))}
         </View>
 
-        <AppButton label="Start Cooking" onPress={() => navigation.navigate('CookingAssistant', { recipeId: recipe.id })} />
+        <AppButton
+          label="Start Cooking"
+          onPress={() => {
+            setSelectedRecipe(recipe);
+            setCurrentCookingSession(cookingMockService.createSession(recipe));
+            navigation.navigate('CookingAssistant', { recipeId: recipe.id });
+          }}
+        />
       </View>
     </ScrollView>
   );

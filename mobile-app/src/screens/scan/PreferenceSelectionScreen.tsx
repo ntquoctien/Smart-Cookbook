@@ -1,25 +1,28 @@
-import { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import type { RootStackParamList } from '../../types';
 import type { Difficulty } from '../../types/recipe';
+import type { DietGoal } from '../../types/scan';
 import { AppButton } from '../../components/ui/AppButton';
 import { ScreenContainer } from '../../components/ui/ScreenContainer';
 import { SectionHeader } from '../../components/ui/SectionHeader';
 import { DifficultySelector } from '../../components/recipe/DifficultySelector';
 import { PreferenceChip } from '../../components/recipe/PreferenceChip';
+import { useAppStore } from '../../store/useAppStore';
 import { colors } from '../../styles/colors';
 import { spacing } from '../../styles/spacing';
 import { fontFamilies, fontSizes } from '../../styles/typography';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'PreferenceSelection'>;
 
-const goals = ['Normal', 'Healthy', 'Weight Loss', 'Muscle Gain', 'Budget Meal', 'Under 30 Minutes'];
+const goals: DietGoal[] = ['Normal', 'Healthy', 'Weight Loss', 'Muscle Gain', 'Budget Meal', 'Under 30 Minutes'];
 
 export function PreferenceSelectionScreen({ navigation }: Props) {
-  const [selectedGoal, setSelectedGoal] = useState('Healthy');
-  const [difficulty, setDifficulty] = useState<Difficulty>('Easy');
+  const selectedGoal = useAppStore((state) => state.selectedDietGoal);
+  const difficulty = useAppStore((state) => state.selectedDifficulty);
+  const setSelectedDietGoal = useAppStore((state) => state.setSelectedDietGoal);
+  const setSelectedDifficulty = useAppStore((state) => state.setSelectedDifficulty);
 
   return (
     <ScreenContainer>
@@ -34,7 +37,7 @@ export function PreferenceSelectionScreen({ navigation }: Props) {
               key={goal}
               label={goal}
               selected={selectedGoal === goal}
-              onPress={() => setSelectedGoal(goal)}
+              onPress={() => setSelectedDietGoal(goal)}
             />
           ))}
         </View>
@@ -42,7 +45,7 @@ export function PreferenceSelectionScreen({ navigation }: Props) {
 
       <View style={styles.section}>
         <SectionHeader title="Difficulty" subtitle="Pick a pace that suits your mood." />
-        <DifficultySelector value={difficulty} onChange={setDifficulty} />
+        <DifficultySelector value={difficulty as Difficulty} onChange={setSelectedDifficulty} />
       </View>
 
       <AppButton label="See recipe recommendations" onPress={() => navigation.navigate('RecipeRecommendation')} />

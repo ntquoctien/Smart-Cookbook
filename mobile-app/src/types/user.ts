@@ -10,4 +10,7 @@ export interface CookingHistoryEntry {
   recipeId: string;
   cookedAt: string;
   rating?: number;
+  recipeName: string;
+  recipeImage: string;
+  favoriteSaved?: boolean;
 }

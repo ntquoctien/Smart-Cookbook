@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { useFonts } from 'expo-font';
 import {
@@ -13,6 +14,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { AppNavigator } from './src/navigation/AppNavigator';
 import { LoadingState } from './src/components/ui/LoadingState';
 import { colors } from './src/styles/colors';
+import { useAppStore } from './src/store/useAppStore';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -22,8 +24,14 @@ export default function App() {
     NunitoSans_800ExtraBold,
     NunitoSans_900Black,
   });
+  const hydrated = useAppStore((state) => state.hydrated);
+  const initializePersistedState = useAppStore((state) => state.initializePersistedState);
 
-  if (!fontsLoaded) {
+  useEffect(() => {
+    void initializePersistedState();
+  }, [initializePersistedState]);
+
+  if (!fontsLoaded || !hydrated) {
     return <LoadingState label="Preparing Smart Cookbook AI..." fullscreen />;
   }
 

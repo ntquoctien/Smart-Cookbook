@@ -7,9 +7,10 @@ import { AIChatBubble } from '../../components/cooking/AIChatBubble';
 import { CookingStepCard } from '../../components/cooking/CookingStepCard';
 import { TimerCard } from '../../components/cooking/TimerCard';
 import { AppButton } from '../../components/ui/AppButton';
-import { mockChatMessages } from '../../data/mockChatMessages';
-import { mockCookingSession } from '../../data/mockCookingSession';
+import { EmptyState } from '../../components/ui/EmptyState';
 import { mockRecipes } from '../../data/mockRecipes';
+import { cookingMockService } from '../../services/cookingMockService';
+import { useAppStore } from '../../store/useAppStore';
 import { colors } from '../../styles/colors';
 import { radius } from '../../styles/radius';
 import { spacing } from '../../styles/spacing';
@@ -18,9 +19,39 @@ import { fontFamilies, fontSizes } from '../../styles/typography';
 type Props = NativeStackScreenProps<RootStackParamList, 'CookingAssistant'>;
 
 export function CookingAssistantScreen({ navigation, route }: Props) {
-  const recipe = mockRecipes.find((item) => item.id === route.params?.recipeId) ?? mockRecipes[0];
-  const [currentStep, setCurrentStep] = useState(mockCookingSession.currentStep);
-  const step = recipe.steps[Math.min(currentStep - 1, recipe.steps.length - 1)];
+  const [question, setQuestion] = useState('');
+  const currentCookingSession = useAppStore((state) => state.currentCookingSession);
+  const selectedRecipe = useAppStore((state) => state.selectedRecipe);
+  const setCurrentCookingSession = useAppStore((state) => state.setCurrentCookingSession);
+  const appendChatMessages = useAppStore((state) => state.appendChatMessages);
+  const recipe =
+    selectedRecipe ?? mockRecipes.find((item) => item.id === route.params?.recipeId) ?? null;
+
+  if (!recipe || !currentCookingSession) {
+    return (
+      <ScrollView style={styles.container} contentContainerStyle={styles.content}>
+        <EmptyState
+          icon="👩‍🍳"
+          title="Cooking session not started"
+          message="Start cooking from a recipe detail screen to load the assistant."
+        />
+      </ScrollView>
+    );
+  }
+
+  const step = recipe.steps[Math.min(currentCookingSession.currentStep - 1, recipe.steps.length - 1)];
+
+  const sendQuestion = () => {
+    const trimmed = question.trim();
+    if (!trimmed) {
+      return;
+    }
+
+    const userMessage = cookingMockService.buildQuestion(trimmed);
+    const reply = cookingMockService.buildReply(trimmed, recipe, currentCookingSession.currentStep);
+    appendChatMessages([userMessage, reply]);
+    setQuestion('');
+  };
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
@@ -29,20 +60,20 @@ export function CookingAssistantScreen({ navigation, route }: Props) {
 
       <CookingStepCard step={step} totalSteps={recipe.steps.length} />
       <View style={styles.sectionGap}>
-        <TimerCard minutes={mockCookingSession.timerMinutes} />
+        <TimerCard minutes={currentCookingSession.timerMinutes} />
       </View>
 
       <View style={styles.navRow}>
         <AppButton
           label="Previous"
           variant="secondary"
-          onPress={() => setCurrentStep((value) => Math.max(1, value - 1))}
+          onPress={() => setCurrentCookingSession(cookingMockService.previousStep(currentCookingSession, recipe))}
           style={styles.flexButton}
         />
-        {currentStep < recipe.steps.length ? (
+        {currentCookingSession.currentStep < recipe.steps.length ? (
           <AppButton
             label="Next step"
-            onPress={() => setCurrentStep((value) => Math.min(recipe.steps.length, value + 1))}
+            onPress={() => setCurrentCookingSession(cookingMockService.nextStep(currentCookingSession, recipe))}
             style={styles.flexButton}
           />
         ) : (
@@ -56,7 +87,7 @@ export function CookingAssistantScreen({ navigation, route }: Props) {
 
       <Text style={styles.chatTitle}>Ask AI while cooking</Text>
       <View style={styles.chatList}>
-        {mockChatMessages.map((message) => (
+        {currentCookingSession.chatMessages.map((message) => (
           <AIChatBubble key={message.id} message={message} />
         ))}
       </View>
@@ -66,9 +97,11 @@ export function CookingAssistantScreen({ navigation, route }: Props) {
           style={styles.input}
           placeholder="Ask something about this step..."
           placeholderTextColor={colors.textSecondary}
+          value={question}
+          onChangeText={setQuestion}
         />
-        <Pressable style={styles.voiceButton}>
-          <Text style={styles.voiceText}>🎙</Text>
+        <Pressable style={styles.voiceButton} onPress={sendQuestion}>
+          <Text style={styles.voiceText}>Send</Text>
         </Pressable>
       </View>
     </ScrollView>
@@ -135,7 +168,7 @@ const styles = StyleSheet.create({
     color: colors.textPrimary,
   },
   voiceButton: {
-    width: 48,
+    width: 60,
     height: 48,
     borderRadius: 24,
     backgroundColor: colors.primary,
@@ -143,6 +176,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   voiceText: {
-    fontSize: 18,
+    fontFamily: fontFamilies.bold,
+    fontSize: fontSizes.sm,
+    color: colors.white,
   },
 });
