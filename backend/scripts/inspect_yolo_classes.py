@@ -7,7 +7,7 @@ from pathlib import Path
 
 
 def default_model_path() -> Path:
-    return (Path(__file__).resolve().parents[2] / "ai-models" / "yolo" / "ingredients" / "yolov8n.pt").resolve()
+    return (Path(__file__).resolve().parents[2] / "ai-models" / "yolo" / "ingredients" / "best.pt").resolve()
 
 
 def load_names(model_path: Path) -> dict[int, str]:
@@ -33,7 +33,7 @@ def load_names(model_path: Path) -> dict[int, str]:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Print YOLO class names from a trained model.")
-    parser.add_argument("--model", type=Path, default=default_model_path(), help="Path to yolov8n.pt")
+    parser.add_argument("--model", type=Path, default=default_model_path(), help="Path to best.pt")
     parser.add_argument("--json", action="store_true", help="Print JSON instead of text")
     args = parser.parse_args()
 

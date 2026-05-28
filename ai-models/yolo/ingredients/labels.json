@@ -1,322 +1,562 @@
 {
-  "person": {
-    "name_vi": "person",
+  "Akabare Khursani": {
+    "name_vi": "Akabare Khursani",
     "unit": "cái"
   },
-  "bicycle": {
-    "name_vi": "bicycle",
-    "unit": "cái"
-  },
-  "car": {
-    "name_vi": "car",
-    "unit": "cái"
-  },
-  "motorcycle": {
-    "name_vi": "motorcycle",
-    "unit": "cái"
-  },
-  "airplane": {
-    "name_vi": "airplane",
-    "unit": "cái"
-  },
-  "bus": {
-    "name_vi": "bus",
-    "unit": "cái"
-  },
-  "train": {
-    "name_vi": "train",
-    "unit": "cái"
-  },
-  "truck": {
-    "name_vi": "truck",
-    "unit": "cái"
-  },
-  "boat": {
-    "name_vi": "boat",
-    "unit": "cái"
-  },
-  "traffic light": {
-    "name_vi": "traffic light",
-    "unit": "cái"
-  },
-  "fire hydrant": {
-    "name_vi": "fire hydrant",
-    "unit": "cái"
-  },
-  "stop sign": {
-    "name_vi": "stop sign",
-    "unit": "cái"
-  },
-  "parking meter": {
-    "name_vi": "parking meter",
-    "unit": "cái"
-  },
-  "bench": {
-    "name_vi": "bench",
-    "unit": "cái"
-  },
-  "bird": {
-    "name_vi": "bird",
-    "unit": "cái"
-  },
-  "cat": {
-    "name_vi": "cat",
-    "unit": "cái"
-  },
-  "dog": {
-    "name_vi": "dog",
-    "unit": "cái"
-  },
-  "horse": {
-    "name_vi": "horse",
-    "unit": "cái"
-  },
-  "sheep": {
-    "name_vi": "sheep",
-    "unit": "cái"
-  },
-  "cow": {
-    "name_vi": "cow",
-    "unit": "cái"
-  },
-  "elephant": {
-    "name_vi": "elephant",
-    "unit": "cái"
-  },
-  "bear": {
-    "name_vi": "bear",
-    "unit": "cái"
-  },
-  "zebra": {
-    "name_vi": "zebra",
-    "unit": "cái"
-  },
-  "giraffe": {
-    "name_vi": "giraffe",
-    "unit": "cái"
-  },
-  "backpack": {
-    "name_vi": "backpack",
-    "unit": "cái"
-  },
-  "umbrella": {
-    "name_vi": "umbrella",
-    "unit": "cái"
-  },
-  "handbag": {
-    "name_vi": "handbag",
-    "unit": "cái"
-  },
-  "tie": {
-    "name_vi": "tie",
-    "unit": "cái"
-  },
-  "suitcase": {
-    "name_vi": "suitcase",
-    "unit": "cái"
-  },
-  "frisbee": {
-    "name_vi": "frisbee",
-    "unit": "cái"
-  },
-  "skis": {
-    "name_vi": "skis",
-    "unit": "cái"
-  },
-  "snowboard": {
-    "name_vi": "snowboard",
-    "unit": "cái"
-  },
-  "sports ball": {
-    "name_vi": "sports ball",
-    "unit": "cái"
-  },
-  "kite": {
-    "name_vi": "kite",
-    "unit": "cái"
-  },
-  "baseball bat": {
-    "name_vi": "baseball bat",
-    "unit": "cái"
-  },
-  "baseball glove": {
-    "name_vi": "baseball glove",
-    "unit": "cái"
-  },
-  "skateboard": {
-    "name_vi": "skateboard",
-    "unit": "cái"
-  },
-  "surfboard": {
-    "name_vi": "surfboard",
-    "unit": "cái"
-  },
-  "tennis racket": {
-    "name_vi": "tennis racket",
-    "unit": "cái"
-  },
-  "bottle": {
-    "name_vi": "chai",
-    "unit": "chai"
-  },
-  "wine glass": {
-    "name_vi": "ly rượu",
-    "unit": "ly"
-  },
-  "cup": {
-    "name_vi": "cốc",
-    "unit": "cốc"
-  },
-  "fork": {
-    "name_vi": "nĩa",
-    "unit": "cái"
-  },
-  "knife": {
-    "name_vi": "dao",
-    "unit": "cái"
-  },
-  "spoon": {
-    "name_vi": "muỗng",
-    "unit": "cái"
-  },
-  "bowl": {
-    "name_vi": "bát",
-    "unit": "bát"
-  },
-  "banana": {
-    "name_vi": "chuối",
-    "unit": "quả"
-  },
-  "apple": {
+  "Apple": {
     "name_vi": "táo",
     "unit": "quả"
   },
-  "sandwich": {
-    "name_vi": "bánh mì kẹp",
+  "Artichoke": {
+    "name_vi": "atisô",
     "unit": "cái"
   },
-  "orange": {
+  "Ash Gourd -Kubhindo-": {
+    "name_vi": "bí đao",
+    "unit": "quả"
+  },
+  "Asparagus -Kurilo-": {
+    "name_vi": "măng tây",
+    "unit": "cây"
+  },
+  "Avocado": {
+    "name_vi": "bơ",
+    "unit": "quả"
+  },
+  "Bacon": {
+    "name_vi": "thịt xông khói",
+    "unit": "miếng"
+  },
+  "Bamboo Shoots -Tama-": {
+    "name_vi": "măng",
+    "unit": "cái"
+  },
+  "Banana": {
+    "name_vi": "chuối",
+    "unit": "quả"
+  },
+  "Beans": {
+    "name_vi": "đậu",
+    "unit": "phần"
+  },
+  "Beaten Rice -Chiura-": {
+    "name_vi": "gạo dẹt",
+    "unit": "phần"
+  },
+  "Beef": {
+    "name_vi": "thịt bò",
+    "unit": "phần"
+  },
+  "Beetroot": {
+    "name_vi": "củ dền",
+    "unit": "củ"
+  },
+  "Bethu ko Saag": {
+    "name_vi": "Bethu ko Saag",
+    "unit": "cái"
+  },
+  "Bitter Gourd": {
+    "name_vi": "mướp đắng",
+    "unit": "quả"
+  },
+  "Black Lentils": {
+    "name_vi": "đậu lăng đen",
+    "unit": "phần"
+  },
+  "Black beans": {
+    "name_vi": "đậu đen",
+    "unit": "phần"
+  },
+  "Bottle Gourd -Lauka-": {
+    "name_vi": "bầu",
+    "unit": "quả"
+  },
+  "Bread": {
+    "name_vi": "bánh mì",
+    "unit": "cái"
+  },
+  "Brinjal": {
+    "name_vi": "cà tím",
+    "unit": "quả"
+  },
+  "Broad Beans -Bakullo-": {
+    "name_vi": "đậu tằm",
+    "unit": "phần"
+  },
+  "Broccoli": {
+    "name_vi": "bông cải xanh",
+    "unit": "cái"
+  },
+  "Buff Meat": {
+    "name_vi": "thịt trâu",
+    "unit": "phần"
+  },
+  "Butter": {
+    "name_vi": "bơ sữa",
+    "unit": "phần"
+  },
+  "Cabbage": {
+    "name_vi": "bắp cải",
+    "unit": "cái"
+  },
+  "Capsicum": {
+    "name_vi": "ớt chuông",
+    "unit": "quả"
+  },
+  "Carrot": {
+    "name_vi": "cà rốt",
+    "unit": "củ"
+  },
+  "Cassava -Ghar Tarul-": {
+    "name_vi": "sắn",
+    "unit": "củ"
+  },
+  "Cauliflower": {
+    "name_vi": "súp lơ trắng",
+    "unit": "cái"
+  },
+  "Chayote-iskus-": {
+    "name_vi": "su su",
+    "unit": "quả"
+  },
+  "Cheese": {
+    "name_vi": "phô mai",
+    "unit": "phần"
+  },
+  "Chicken": {
+    "name_vi": "thịt gà",
+    "unit": "phần"
+  },
+  "Chicken Gizzards": {
+    "name_vi": "mề gà",
+    "unit": "phần"
+  },
+  "Chickpeas": {
+    "name_vi": "đậu gà",
+    "unit": "phần"
+  },
+  "Chili Pepper -Khursani-": {
+    "name_vi": "ớt",
+    "unit": "quả"
+  },
+  "Chili Powder": {
+    "name_vi": "bột ớt",
+    "unit": "phần"
+  },
+  "Chowmein Noodles": {
+    "name_vi": "mì chowmein",
+    "unit": "phần"
+  },
+  "Cinnamon": {
+    "name_vi": "quế",
+    "unit": "thanh"
+  },
+  "Coriander -Dhaniya-": {
+    "name_vi": "rau mùi",
+    "unit": "bó"
+  },
+  "Corn": {
+    "name_vi": "bắp",
+    "unit": "trái"
+  },
+  "Cornflakec": {
+    "name_vi": "ngũ cốc bắp",
+    "unit": "phần"
+  },
+  "Crab Meat": {
+    "name_vi": "thịt cua",
+    "unit": "phần"
+  },
+  "Cucumber": {
+    "name_vi": "dưa leo",
+    "unit": "quả"
+  },
+  "Egg": {
+    "name_vi": "trứng",
+    "unit": "quả"
+  },
+  "Farsi ko Munta": {
+    "name_vi": "Farsi ko Munta",
+    "unit": "cái"
+  },
+  "Fiddlehead Ferns -Niguro-": {
+    "name_vi": "Fiddlehead Ferns -Niguro-",
+    "unit": "cái"
+  },
+  "Fish": {
+    "name_vi": "cá",
+    "unit": "con"
+  },
+  "Garden Peas": {
+    "name_vi": "đậu Hà Lan",
+    "unit": "phần"
+  },
+  "Garden cress-Chamsur ko saag-": {
+    "name_vi": "Garden cress-Chamsur ko saag-",
+    "unit": "cái"
+  },
+  "Garlic": {
+    "name_vi": "tỏi",
+    "unit": "củ"
+  },
+  "Ginger": {
+    "name_vi": "gừng",
+    "unit": "củ"
+  },
+  "Green Brinjal": {
+    "name_vi": "cà tím xanh",
+    "unit": "quả"
+  },
+  "Green Lentils": {
+    "name_vi": "đậu lăng xanh",
+    "unit": "phần"
+  },
+  "Green Mint -Pudina-": {
+    "name_vi": "bạc hà",
+    "unit": "bó"
+  },
+  "Green Peas": {
+    "name_vi": "đậu xanh Hà Lan",
+    "unit": "phần"
+  },
+  "Green Soyabean -Hariyo Bhatmas-": {
+    "name_vi": "Green Soyabean -Hariyo Bhatmas-",
+    "unit": "cái"
+  },
+  "Gundruk": {
+    "name_vi": "rau lên men gundruk",
+    "unit": "phần"
+  },
+  "Ham": {
+    "name_vi": "giăm bông",
+    "unit": "miếng"
+  },
+  "Ice": {
+    "name_vi": "đá",
+    "unit": "viên"
+  },
+  "Jack Fruit": {
+    "name_vi": "mít",
+    "unit": "miếng"
+  },
+  "Ketchup": {
+    "name_vi": "tương cà",
+    "unit": "phần"
+  },
+  "Lapsi -Nepali Hog Plum-": {
+    "name_vi": "Lapsi -Nepali Hog Plum-",
+    "unit": "cái"
+  },
+  "Lemon -Nimbu-": {
+    "name_vi": "chanh vàng",
+    "unit": "quả"
+  },
+  "Lime -Kagati-": {
+    "name_vi": "chanh xanh",
+    "unit": "quả"
+  },
+  "Long Beans -Bodi-": {
+    "name_vi": "đậu đũa",
+    "unit": "quả"
+  },
+  "Masyaura": {
+    "name_vi": "Masyaura",
+    "unit": "cái"
+  },
+  "Milk": {
+    "name_vi": "sữa",
+    "unit": "phần"
+  },
+  "Minced Meat": {
+    "name_vi": "thịt băm",
+    "unit": "phần"
+  },
+  "Moringa Leaves -Sajyun ko Munta-": {
+    "name_vi": "Moringa Leaves -Sajyun ko Munta-",
+    "unit": "cái"
+  },
+  "Mushroom": {
+    "name_vi": "nấm",
+    "unit": "cái"
+  },
+  "Mutton": {
+    "name_vi": "thịt cừu",
+    "unit": "phần"
+  },
+  "Nutrela -Soya Chunks-": {
+    "name_vi": "Nutrela -Soya Chunks-",
+    "unit": "cái"
+  },
+  "Okra -Bhindi-": {
+    "name_vi": "đậu bắp",
+    "unit": "quả"
+  },
+  "Olive Oil": {
+    "name_vi": "dầu ô liu",
+    "unit": "phần"
+  },
+  "Onion": {
+    "name_vi": "hành tây",
+    "unit": "củ"
+  },
+  "Onion Leaves": {
+    "name_vi": "hành lá",
+    "unit": "nhánh"
+  },
+  "Orange": {
     "name_vi": "cam",
     "unit": "quả"
   },
-  "broccoli": {
-    "name_vi": "bông cải xanh",
+  "Palak -Indian Spinach-": {
+    "name_vi": "Palak -Indian Spinach-",
+    "unit": "cái"
+  },
+  "Palungo -Nepali Spinach-": {
+    "name_vi": "Palungo -Nepali Spinach-",
+    "unit": "cái"
+  },
+  "Paneer": {
+    "name_vi": "paneer",
+    "unit": "miếng"
+  },
+  "Papaya": {
+    "name_vi": "đu đủ",
+    "unit": "quả"
+  },
+  "Pea": {
+    "name_vi": "đậu Hà Lan",
+    "unit": "phần"
+  },
+  "Pear": {
+    "name_vi": "lê",
+    "unit": "quả"
+  },
+  "Pointed Gourd -Chuche Karela-": {
+    "name_vi": "Pointed Gourd -Chuche Karela-",
+    "unit": "cái"
+  },
+  "Pork": {
+    "name_vi": "thịt heo",
+    "unit": "phần"
+  },
+  "Potato": {
+    "name_vi": "khoai tây",
+    "unit": "củ"
+  },
+  "Pumpkin -Farsi-": {
+    "name_vi": "bí đỏ",
+    "unit": "quả"
+  },
+  "Radish": {
+    "name_vi": "củ cải",
+    "unit": "củ"
+  },
+  "Rahar ko Daal": {
+    "name_vi": "Rahar ko Daal",
+    "unit": "cái"
+  },
+  "Rayo ko Saag": {
+    "name_vi": "Rayo ko Saag",
+    "unit": "cái"
+  },
+  "Red Beans": {
+    "name_vi": "đậu đỏ",
+    "unit": "phần"
+  },
+  "Red Lentils": {
+    "name_vi": "đậu lăng đỏ",
+    "unit": "phần"
+  },
+  "Rice -Chamal-": {
+    "name_vi": "gạo",
+    "unit": "phần"
+  },
+  "Sajjyun -Moringa Drumsticks-": {
+    "name_vi": "Sajjyun -Moringa Drumsticks-",
+    "unit": "cái"
+  },
+  "Salt": {
+    "name_vi": "muối",
+    "unit": "phần"
+  },
+  "Sausage": {
+    "name_vi": "xúc xích",
+    "unit": "cây"
+  },
+  "Snake Gourd -Chichindo-": {
+    "name_vi": "Snake Gourd -Chichindo-",
+    "unit": "cái"
+  },
+  "Soy Sauce": {
+    "name_vi": "nước tương",
+    "unit": "phần"
+  },
+  "Soyabean -Bhatmas-": {
+    "name_vi": "đậu nành",
+    "unit": "phần"
+  },
+  "Sponge Gourd -Ghiraula-": {
+    "name_vi": "mướp hương",
+    "unit": "quả"
+  },
+  "Stinging Nettle -Sisnu-": {
+    "name_vi": "Stinging Nettle -Sisnu-",
+    "unit": "cái"
+  },
+  "Strawberry": {
+    "name_vi": "dâu tây",
+    "unit": "quả"
+  },
+  "Sugar": {
+    "name_vi": "đường",
+    "unit": "phần"
+  },
+  "Sweet Potato -Suthuni-": {
+    "name_vi": "khoai lang",
+    "unit": "củ"
+  },
+  "Taro Leaves -Karkalo-": {
+    "name_vi": "Taro Leaves -Karkalo-",
+    "unit": "cái"
+  },
+  "Taro Root-Pidalu-": {
+    "name_vi": "Taro Root-Pidalu-",
+    "unit": "cái"
+  },
+  "Thukpa Noodles": {
+    "name_vi": "Thukpa Noodles",
+    "unit": "cái"
+  },
+  "Tofu": {
+    "name_vi": "đậu phụ",
+    "unit": "miếng"
+  },
+  "Tomato": {
+    "name_vi": "cà chua",
+    "unit": "quả"
+  },
+  "Tori ko Saag": {
+    "name_vi": "Tori ko Saag",
+    "unit": "cái"
+  },
+  "Tree Tomato -Rukh Tamatar-": {
+    "name_vi": "Tree Tomato -Rukh Tamatar-",
+    "unit": "cái"
+  },
+  "Turnip": {
+    "name_vi": "củ cải turnip",
+    "unit": "củ"
+  },
+  "Wallnut": {
+    "name_vi": "óc chó",
+    "unit": "hạt"
+  },
+  "Water Melon": {
+    "name_vi": "dưa hấu",
+    "unit": "quả"
+  },
+  "Wheat": {
+    "name_vi": "lúa mì",
+    "unit": "phần"
+  },
+  "Yellow Lentils": {
+    "name_vi": "đậu lăng vàng",
+    "unit": "phần"
+  },
+  "beef": {
+    "name_vi": "thịt bò",
+    "unit": "phần"
+  },
+  "bell_pepper": {
+    "name_vi": "ớt chuông",
+    "unit": "quả"
+  },
+  "cabbage": {
+    "name_vi": "bắp cải",
     "unit": "cái"
   },
   "carrot": {
     "name_vi": "cà rốt",
     "unit": "củ"
   },
-  "hot dog": {
-    "name_vi": "hot dog",
+  "cauliflower": {
+    "name_vi": "súp lơ trắng",
     "unit": "cái"
   },
-  "pizza": {
-    "name_vi": "pizza",
-    "unit": "cái"
+  "chicken": {
+    "name_vi": "thịt gà",
+    "unit": "phần"
   },
-  "donut": {
-    "name_vi": "bánh donut",
-    "unit": "cái"
+  "cucumber": {
+    "name_vi": "dưa leo",
+    "unit": "quả"
   },
-  "cake": {
-    "name_vi": "bánh ngọt",
-    "unit": "cái"
+  "egg": {
+    "name_vi": "trứng",
+    "unit": "quả"
   },
-  "chair": {
-    "name_vi": "chair",
-    "unit": "cái"
+  "fish": {
+    "name_vi": "cá",
+    "unit": "con"
   },
-  "couch": {
-    "name_vi": "couch",
-    "unit": "cái"
+  "garlic": {
+    "name_vi": "tỏi",
+    "unit": "củ"
   },
-  "potted plant": {
-    "name_vi": "potted plant",
-    "unit": "cái"
+  "ginger": {
+    "name_vi": "gừng",
+    "unit": "củ"
   },
-  "bed": {
-    "name_vi": "bed",
-    "unit": "cái"
+  "kimchi": {
+    "name_vi": "kim chi",
+    "unit": "phần"
   },
-  "dining table": {
-    "name_vi": "dining table",
-    "unit": "cái"
+  "kumquat": {
+    "name_vi": "tắc",
+    "unit": "quả"
   },
-  "toilet": {
-    "name_vi": "toilet",
-    "unit": "cái"
+  "lemon": {
+    "name_vi": "chanh",
+    "unit": "quả"
   },
-  "tv": {
-    "name_vi": "tv",
-    "unit": "cái"
+  "mayonnaise": {
+    "name_vi": "sốt mayonnaise",
+    "unit": "phần"
   },
-  "laptop": {
-    "name_vi": "laptop",
-    "unit": "cái"
+  "noodle": {
+    "name_vi": "mì",
+    "unit": "phần"
   },
-  "mouse": {
-    "name_vi": "mouse",
-    "unit": "cái"
+  "onion": {
+    "name_vi": "hành tây",
+    "unit": "củ"
   },
-  "remote": {
-    "name_vi": "remote",
-    "unit": "cái"
+  "pork": {
+    "name_vi": "thịt heo",
+    "unit": "phần"
   },
-  "keyboard": {
-    "name_vi": "keyboard",
-    "unit": "cái"
+  "potato": {
+    "name_vi": "khoai tây",
+    "unit": "củ"
   },
-  "cell phone": {
-    "name_vi": "cell phone",
-    "unit": "cái"
+  "seaweed": {
+    "name_vi": "rong biển",
+    "unit": "lá"
   },
-  "microwave": {
-    "name_vi": "lò vi sóng",
-    "unit": "cái"
+  "shrimp": {
+    "name_vi": "tôm",
+    "unit": "con"
   },
-  "oven": {
-    "name_vi": "lò nướng",
-    "unit": "cái"
+  "small_pepper": {
+    "name_vi": "ớt nhỏ",
+    "unit": "quả"
   },
-  "toaster": {
-    "name_vi": "máy nướng bánh mì",
-    "unit": "cái"
+  "tofu": {
+    "name_vi": "đậu phụ",
+    "unit": "miếng"
   },
-  "sink": {
-    "name_vi": "sink",
-    "unit": "cái"
-  },
-  "refrigerator": {
-    "name_vi": "tủ lạnh",
-    "unit": "cái"
-  },
-  "book": {
-    "name_vi": "book",
-    "unit": "cái"
-  },
-  "clock": {
-    "name_vi": "clock",
-    "unit": "cái"
-  },
-  "vase": {
-    "name_vi": "vase",
-    "unit": "cái"
-  },
-  "scissors": {
-    "name_vi": "scissors",
-    "unit": "cái"
-  },
-  "teddy bear": {
-    "name_vi": "teddy bear",
-    "unit": "cái"
-  },
-  "hair drier": {
-    "name_vi": "hair drier",
-    "unit": "cái"
-  },
-  "toothbrush": {
-    "name_vi": "toothbrush",
-    "unit": "cái"
+  "tomato": {
+    "name_vi": "cà chua",
+    "unit": "quả"
   }
 }

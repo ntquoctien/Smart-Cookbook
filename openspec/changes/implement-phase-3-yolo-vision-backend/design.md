@@ -2,7 +2,7 @@
 
 Phase 2 introduced a real mobile scan session, image capture/gallery selection, shared state, persistence, and mock services. The current vision step still calls `visionMockService`, and `IngredientConfirmationScreen` currently exposes confidence in the UI. Phase 3 introduces a local FastAPI service that loads a trained YOLO model once, accepts uploaded food/ingredient images, counts detected ingredient objects, maps model class names into user-facing Vietnamese labels and units, and returns a clean response to the mobile app.
 
-The trained model file is expected to be `yolov8n.pt`. The implementation MUST inspect `model.names` before generating `labels.json`; labels MUST be based on actual model classes, not invented from examples. Technical detection fields such as confidence, class IDs, bounding boxes, and raw detections are useful for debugging, but they are not part of the normal mobile-facing response and MUST NOT be shown in the user-facing mobile UI.
+The trained model file is expected to be `best.pt`. The implementation MUST inspect `model.names` before generating `labels.json`; labels MUST be based on actual model classes, not invented from examples. Technical detection fields such as confidence, class IDs, bounding boxes, and raw detections are useful for debugging, but they are not part of the normal mobile-facing response and MUST NOT be shown in the user-facing mobile UI.
 
 ## Goals / Non-Goals
 
@@ -43,7 +43,7 @@ Alternatives considered:
 - Store the model object globally inside `router.py`: rejected because model loading, error handling, and inspection belong behind a service boundary.
 
 ### Generate label mapping from actual `model.names`
-Before creating `labels.json`, the implementation SHALL run or reuse `backend/scripts/inspect_yolo_classes.py` to inspect actual classes from `yolov8n.pt`. Each class key in `labels.json` SHALL match the original class name exactly. Obvious mappings can use Vietnamese display names and units; uncertain mappings SHALL use the original class name as `name_vi`, use `"cái"` as the unit, and be documented in the Phase 3 report.
+Before creating `labels.json`, the implementation SHALL run or reuse `backend/scripts/inspect_yolo_classes.py` to inspect actual classes from `best.pt`. Each class key in `labels.json` SHALL match the original class name exactly. Obvious mappings can use Vietnamese display names and units; uncertain mappings SHALL use the original class name as `name_vi`, use `"cái"` as the unit, and be documented in the Phase 3 report.
 
 Alternatives considered:
 - Use the example egg/tomato/garlic/green_onion map without inspection: rejected because it may not match the trained model classes.
@@ -83,7 +83,7 @@ Alternatives considered:
 ## Migration Plan
 
 1. Add the backend and model directory scaffold.
-2. Place or reference `yolov8n.pt` under `ai-models/yolo/ingredients/`.
+2. Place or reference `best.pt` under `ai-models/yolo/ingredients/`.
 3. Add the class inspection script, load the model, inspect `model.names`, and generate `labels.json` from actual classes.
 4. Implement FastAPI config, app startup, health route, vision schemas, label mapper, YOLO model loader, detection service, and one/batch routes.
 5. Implement upload validation, temporary-file cleanup, confidence filtering, class counting, label mapping, no-detection response, and debug-only raw detection output.
@@ -97,6 +97,6 @@ Rollback strategy:
 
 ## Open Questions
 
-- The actual YOLO class names are unknown until `yolov8n.pt` is inspected.
+- The actual YOLO class names are unknown until `best.pt` is inspected.
 - The final mobile API base URL depends on whether testing is done with web, Android emulator, iOS simulator, or a physical device.
 - Sample ingredient images may not exist in the repository; endpoint validation may need to use an available local image or document that sample-image testing was not performed.

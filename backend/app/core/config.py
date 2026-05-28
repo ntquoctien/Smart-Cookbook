@@ -6,7 +6,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
-    yolo_model_path: Path = Field(default=Path("../ai-models/yolo/ingredients/yolov8n.pt"))
+    yolo_model_path: Path = Field(default=Path("../ai-models/yolo/ingredients/best.pt"))
     yolo_labels_path: Path = Field(default=Path("../ai-models/yolo/ingredients/labels.json"))
     yolo_confidence_threshold: float = Field(default=0.35, ge=0, le=1)
     vision_debug: bool = False

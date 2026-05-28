@@ -1,11 +1,11 @@
 ## ADDED Requirements
 
 ### Requirement: The backend SHALL manage YOLO ingredient model assets
-The project SHALL store or clearly reference trained YOLO ingredient model assets under `ai-models/yolo/ingredients/`, including `yolov8n.pt`, a generated `labels.json` based on actual model class names, and a README documenting model placement and label mapping assumptions.
+The project SHALL store or clearly reference trained YOLO ingredient model assets under `ai-models/yolo/ingredients/`, including `best.pt`, a generated `labels.json` based on actual model class names, and a README documenting model placement and label mapping assumptions.
 
 #### Scenario: Model assets are prepared
 - **WHEN** the Phase 3 implementation prepares the YOLO model folder
-- **THEN** the project contains or documents the expected `ai-models/yolo/ingredients/yolov8n.pt` location, `labels.json`, and model README
+- **THEN** the project contains or documents the expected `ai-models/yolo/ingredients/best.pt` location, `labels.json`, and model README
 
 #### Scenario: Labels are generated from the trained model
 - **WHEN** `labels.json` is created or updated

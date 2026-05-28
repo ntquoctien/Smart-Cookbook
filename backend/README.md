@@ -15,13 +15,13 @@ copy .env.example .env
 Place the trained model at:
 
 ```text
-ai-models/yolo/ingredients/yolov8n.pt
+ai-models/yolo/ingredients/best.pt
 ```
 
 From the project root, inspect model classes:
 
 ```bash
-python backend/scripts/inspect_yolo_classes.py --model ai-models/yolo/ingredients/yolov8n.pt
+python backend/scripts/inspect_yolo_classes.py --model ai-models/yolo/ingredients/best.pt
 ```
 
 ## Run

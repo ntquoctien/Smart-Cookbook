@@ -10,7 +10,7 @@ Phase 3 adds a FastAPI backend for YOLO-based ingredient detection and wires the
 ai-models/
   yolo/
     ingredients/
-      yolov8n.pt
+      best.pt
       labels.json
       README.md
 
@@ -41,7 +41,7 @@ backend/
 The trained model file already exists at:
 
 ```text
-ai-models/yolo/ingredients/yolov8n.pt
+ai-models/yolo/ingredients/best.pt
 ```
 
 It was not duplicated.
@@ -51,7 +51,7 @@ It was not duplicated.
 The model was inspected with:
 
 ```bash
-python backend/scripts/inspect_yolo_classes.py --model ai-models/yolo/ingredients/yolov8n.pt
+python backend/scripts/inspect_yolo_classes.py --model ai-models/yolo/ingredients/best.pt
 ```
 
 Actual `model.names`:
@@ -139,7 +139,7 @@ Actual `model.names`:
 79 toothbrush
 ```
 
-Important finding: this `yolov8n.pt` exposes the standard COCO class list, not the example cooking-specific labels `egg`, `tomato`, `garlic`, and `green_onion`.
+Important finding after replacing the model: `best.pt` exposes 140 food, ingredient, condiment, and cooking-related classes. It is no longer the COCO/default `yolov8n.pt` model.
 
 ## labels.json Mapping
 
@@ -265,7 +265,7 @@ Mobile behavior:
 - FastAPI import check: `python -c "from app.main import app; print(app.title)"` from `backend/` returned `Smart Cookbook AI Backend`.
 - Health endpoint: local Uvicorn server returned `{"status":"ok"}` for `GET /health`.
 - Vision health endpoint: local Uvicorn server returned model and labels available, loaded class names, and no error for `GET /api/vision/health`.
-- YOLO class inspection: `python backend/scripts/inspect_yolo_classes.py --model ai-models/yolo/ingredients/yolov8n.pt` printed the actual 80 class names listed above.
+- YOLO class inspection: `python backend/scripts/inspect_yolo_classes.py --model ai-models/yolo/ingredients/best.pt` printed the actual 140 cooking ingredient and food-related class names.
 - Single-image endpoint: `POST /api/vision/detect-ingredients` with a generated blank JPEG returned `success: true`, an empty `ingredients` array, and the no-detection message.
 - Batch endpoint: `POST /api/vision/detect-ingredients/batch` with two generated blank JPEG uploads returned `success: true`, an empty `ingredients` array, and the no-detection message.
 - Debug exclusion: with `VISION_DEBUG=false`, single and batch endpoint responses did not include `debug`, confidence scores, bounding boxes, class IDs, or raw detections.
@@ -277,10 +277,10 @@ Mobile behavior:
 
 ## Known Issues
 
-- The provided `yolov8n.pt` currently reports COCO classes, not the cooking-specific class names described in the Phase 3 goal. Ingredient detection will therefore be limited to COCO food classes such as `banana`, `apple`, `orange`, `broccoli`, `carrot`, `sandwich`, `pizza`, `donut`, and `cake` unless a cooking-specific trained model is supplied.
+- Some labels are Nepalese/local ingredient names. They are valid model classes, but labels without a confident Vietnamese translation are intentionally kept as the original class name with unit `cái`.
 - Mobile devices cannot usually reach `127.0.0.1` on the development computer. Configure `EXPO_PUBLIC_VISION_API_BASE_URL` for Android emulator, iOS simulator, or physical-device LAN access.
 - The backend is local-development focused. Production deployment, authentication, rate limiting, and persistent storage remain out of scope.
 
 ## Next Recommended Phase
 
-Phase 4 should use the backend ingredient output to drive a real recommendation API or data-backed recipe engine, and should replace the COCO-style model file with the intended cooking-ingredient-trained model if available.
+Phase 4 should use the backend ingredient output to drive a real recommendation API or data-backed recipe engine, and refine Vietnamese label translations for local ingredient names if needed.

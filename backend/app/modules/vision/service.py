@@ -18,7 +18,18 @@ from app.modules.vision.schemas import (
 from app.modules.vision.yolo_model import ModelLoadError, get_model, inspect_class_names
 
 ALLOWED_IMAGE_TYPES = {"image/jpeg", "image/png", "image/webp", "image/bmp"}
-NO_DETECTIONS_MESSAGE = "No ingredients detected. Please try another photo or add ingredients manually."
+NO_DETECTIONS_GUIDANCE = "No ingredients detected. Please try another photo or add ingredients manually."
+
+
+def _completed_message(image_count: int, ingredient_count: int) -> str:
+    image_label = "image" if image_count == 1 else "images"
+    ingredient_label = "ingredient" if ingredient_count == 1 else "ingredients"
+    return f"Scan completed. Scanned {image_count} {image_label} and detected {ingredient_count} {ingredient_label}."
+
+
+def _no_detections_message(image_count: int) -> str:
+    image_label = "image" if image_count == 1 else "images"
+    return f"Scan completed. Scanned {image_count} {image_label}. {NO_DETECTIONS_GUIDANCE}"
 
 
 def _extension_for_upload(file: UploadFile) -> str:
@@ -109,7 +120,7 @@ def _build_response(
         for mapped in [mapper.map_label(class_name)]
     ]
 
-    message = None if ingredients else NO_DETECTIONS_MESSAGE
+    message = _completed_message(image_count, len(ingredients)) if ingredients else _no_detections_message(image_count)
     debug = None
     if settings.vision_debug:
         debug = VisionDebug(

@@ -14,6 +14,12 @@ type BackendVisionResponse = {
   message?: string;
 };
 
+export type VisionDetectionResult = {
+  ingredients: Ingredient[];
+  message?: string;
+  imageCount: number;
+};
+
 export class VisionApiError extends Error {
   constructor(message: string) {
     super(message);
@@ -62,7 +68,7 @@ function normalizeIngredient(item: BackendIngredient, index: number): Ingredient
   };
 }
 
-async function upload(images: SelectedImage[]): Promise<Ingredient[]> {
+async function upload(images: SelectedImage[]): Promise<VisionDetectionResult> {
   if (!images.length) {
     throw new VisionApiError('No image selected.');
   }
@@ -90,11 +96,15 @@ async function upload(images: SelectedImage[]): Promise<Ingredient[]> {
     throw new VisionApiError(payload.message || 'Ingredient detection returned an invalid response.');
   }
 
-  return payload.ingredients.map(normalizeIngredient);
+  return {
+    ingredients: payload.ingredients.map(normalizeIngredient),
+    message: payload.message,
+    imageCount: images.length,
+  };
 }
 
 export const visionApiService = {
-  async detectIngredients(images: SelectedImage[]): Promise<Ingredient[]> {
+  async detectIngredients(images: SelectedImage[]): Promise<VisionDetectionResult> {
     if (visionApiConfig.useMockVision) {
       throw new VisionApiError('Mock vision mode is enabled.');
     }

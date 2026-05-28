@@ -23,6 +23,7 @@ const steps = ['Analyzing image', 'Detecting ingredients', 'Preparing recipe sug
 
 export function AIScanningScreen({ navigation }: Props) {
   const [activeStep, setActiveStep] = useState(0);
+  const [scanStatus, setScanStatus] = useState<string | null>(null);
   const selectedImages = useAppStore((state) => state.selectedImages);
   const scanning = useAppStore((state) => state.scanning);
   const scanError = useAppStore((state) => state.scanError);
@@ -51,15 +52,25 @@ export function AIScanningScreen({ navigation }: Props) {
 
       setScanning(true);
       setScanError(null);
+      setScanStatus(null);
       setActiveStep(0);
 
       let usedFallback = false;
       let ingredients: Ingredient[] = [];
+      let nextScanStatus: string | null = null;
       try {
-        ingredients = await visionApiService.detectIngredients(selectedImages);
-      } catch {
+        const result = await visionApiService.detectIngredients(selectedImages);
+        ingredients = result.ingredients;
+        nextScanStatus =
+          result.message ??
+          `Scan completed. Scanned ${result.imageCount} ${result.imageCount === 1 ? 'image' : 'images'}.`;
+      } catch (error) {
+        console.warn('Vision API unavailable, falling back to mock detection.', error);
         usedFallback = true;
         ingredients = await visionMockService.detectIngredients(selectedImages);
+        nextScanStatus = `Mock scan completed. Scanned ${selectedImages.length} ${
+          selectedImages.length === 1 ? 'image' : 'images'
+        }.`;
       }
 
       if (!active) {
@@ -68,9 +79,11 @@ export function AIScanningScreen({ navigation }: Props) {
 
       if (!ingredients.length) {
         setDetectedIngredients([]);
-        setScanError('No ingredients detected. Please try another photo or add ingredients manually.');
+        setScanError('No ingredients detected. You can continue and add ingredients manually.');
+        setScanStatus(nextScanStatus);
       } else {
         setDetectedIngredients(ingredients);
+        setScanStatus(nextScanStatus);
         if (usedFallback) {
           setScanError('Backend vision is unavailable, so mock detection was used. You can review or edit the ingredients.');
         }
@@ -106,7 +119,15 @@ export function AIScanningScreen({ navigation }: Props) {
         <Text style={styles.icon}>🧠</Text>
         <Text style={styles.title}>AI is reading your ingredients</Text>
         <Text style={styles.subtitle}>We are turning your photos into a cleaner ingredient list.</Text>
-        <LoadingState label={scanError ?? steps[activeStep]} />
+        {scanning ? <LoadingState label={steps[activeStep]} /> : null}
+        {!scanning && scanStatus ? (
+          <View style={styles.statusBox}>
+            <Text style={styles.statusTitle}>Scan completed</Text>
+            <Text style={styles.statusText}>{scanStatus}</Text>
+            {scanError ? <Text style={styles.warningText}>{scanError}</Text> : null}
+          </View>
+        ) : null}
+        {!scanning && !scanStatus && scanError ? <LoadingState label={scanError} /> : null}
       </LinearGradient>
 
       <View style={styles.stepList}>
@@ -177,5 +198,34 @@ const styles = StyleSheet.create({
   },
   activeStepText: {
     color: colors.textPrimary,
+  },
+  statusBox: {
+    width: '100%',
+    marginTop: spacing.md,
+    borderRadius: radius.lg,
+    backgroundColor: colors.surface,
+    borderWidth: 1,
+    borderColor: colors.border,
+    padding: spacing.lg,
+    gap: spacing.xs,
+  },
+  statusTitle: {
+    fontFamily: fontFamilies.extraBold,
+    fontSize: fontSizes.md,
+    color: colors.success,
+    textAlign: 'center',
+  },
+  statusText: {
+    fontFamily: fontFamilies.bold,
+    fontSize: fontSizes.sm,
+    color: colors.textPrimary,
+    textAlign: 'center',
+  },
+  warningText: {
+    fontFamily: fontFamilies.regular,
+    fontSize: fontSizes.sm,
+    lineHeight: 18,
+    color: colors.warning,
+    textAlign: 'center',
   },
 });

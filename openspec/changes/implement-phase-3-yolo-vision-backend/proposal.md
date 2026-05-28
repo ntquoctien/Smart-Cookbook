@@ -4,7 +4,7 @@ Phase 2 made the mobile scan flow interactive, but ingredient detection still de
 
 ## What Changes
 
-- Add a dedicated AI model storage convention under `ai-models/yolo/ingredients/` for the trained `yolov8n.pt` model, generated `labels.json`, and model README.
+- Add a dedicated AI model storage convention under `ai-models/yolo/ingredients/` for the trained `best.pt` model, generated `labels.json`, and model README.
 - Add a FastAPI backend under `backend/` with health/config structure, a vision router, YOLO model singleton loading, label mapping, request/response schemas, upload handling, and validation.
 - Add `/api/vision/detect-ingredients` for one uploaded image and `/api/vision/detect-ingredients/batch` for multiple uploaded images.
 - Count YOLO detections by model class name, map each class to a Vietnamese display name and unit when available, and return only `name`, `quantity`, and `unit` to the mobile-facing response.
@@ -27,7 +27,7 @@ Phase 2 made the mobile scan flow interactive, but ingredient detection still de
 ## Impact
 
 - Affected backend code: new `backend/app/` FastAPI application, vision module, upload directory, scripts, requirements, env example, and backend README.
-- Affected model assets: `ai-models/yolo/ingredients/yolov8n.pt`, generated `labels.json`, and model README.
+- Affected model assets: `ai-models/yolo/ingredients/best.pt`, generated `labels.json`, and model README.
 - Affected mobile code: `mobile-app/src/services/visionApiService.ts`, existing mock vision service integration, scan flow screens, app config, and detected ingredient types/state where needed.
 - Affected docs: new `docs/PHASE_3_YOLO_VISION_BACKEND_REPORT.md` and README updates for model placement, backend startup, endpoint testing, and mobile API configuration.
 - New dependencies: FastAPI, Uvicorn, python-multipart, Ultralytics, Pillow, and optionally pydantic-settings.

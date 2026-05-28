@@ -16,7 +16,7 @@ npm start
 Place the trained model at:
 
 ```text
-ai-models/yolo/ingredients/yolov8n.pt
+ai-models/yolo/ingredients/best.pt
 ```
 
 Install and run the backend:
@@ -33,7 +33,7 @@ uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 Inspect YOLO class names from the project root:
 
 ```bash
-python backend/scripts/inspect_yolo_classes.py --model ai-models/yolo/ingredients/yolov8n.pt
+python backend/scripts/inspect_yolo_classes.py --model ai-models/yolo/ingredients/best.pt
 ```
 
 Test the vision API:

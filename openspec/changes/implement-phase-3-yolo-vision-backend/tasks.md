@@ -1,6 +1,6 @@
 ## 1. Prepare model assets and backend scaffold
 
-- [x] 1.1 Create `ai-models/yolo/ingredients/` with `README.md` and verify whether `yolov8n.pt` already exists in the repository before moving or documenting the expected model location.
+- [x] 1.1 Create `ai-models/yolo/ingredients/` with `README.md` and verify whether `best.pt` already exists in the repository before moving or documenting the expected model location.
 - [x] 1.2 Create `backend/` with `app/main.py`, `app/core/config.py`, `app/modules/vision/`, `uploads/vision/.gitkeep`, `requirements.txt`, `.env.example`, `README.md`, and `scripts/inspect_yolo_classes.py`.
 - [x] 1.3 Add backend dependencies for FastAPI, Uvicorn, python-multipart, Ultralytics, Pillow, and pydantic-settings if configuration uses it.
 - [x] 1.4 Add `.env.example` values for `YOLO_MODEL_PATH`, `YOLO_LABELS_PATH`, `YOLO_CONFIDENCE_THRESHOLD`, `VISION_DEBUG`, and `UPLOAD_DIR`.
@@ -8,7 +8,7 @@
 ## 2. Inspect YOLO model classes and create label mapping
 
 - [x] 2.1 Implement `backend/scripts/inspect_yolo_classes.py` so it loads the configured YOLO model and prints class IDs and class names from `model.names`.
-- [x] 2.2 Run the class inspection script against `yolov8n.pt` and record the actual class names for the Phase 3 report.
+- [x] 2.2 Run the class inspection script against `best.pt` and record the actual class names for the Phase 3 report.
 - [x] 2.3 Generate `ai-models/yolo/ingredients/labels.json` using only the actual class names from `model.names` as keys.
 - [x] 2.4 Add Vietnamese display names and units for obvious labels; for uncertain labels, use the original class name as `name_vi`, use unit `"cái"`, and record those labels as uncertain in the Phase 3 report.
 

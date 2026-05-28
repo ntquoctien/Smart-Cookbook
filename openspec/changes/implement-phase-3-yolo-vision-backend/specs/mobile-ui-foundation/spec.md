@@ -25,7 +25,7 @@ The mobile client SHALL include typed mock data, shared state models, service-fa
 ## ADDED Requirements
 
 ### Requirement: The project SHALL document backend and model setup
-The project SHALL document how to place or reference `yolov8n.pt`, configure backend environment variables, run the FastAPI backend, test the vision endpoints, and connect the mobile app to the backend API base URL.
+The project SHALL document how to place or reference `best.pt`, configure backend environment variables, run the FastAPI backend, test the vision endpoints, and connect the mobile app to the backend API base URL.
 
 #### Scenario: Developer runs the Phase 3 backend locally
 - **WHEN** a developer follows the project README or backend README
